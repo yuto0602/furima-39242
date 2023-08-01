@@ -29,7 +29,7 @@
 | item_description    | text       | null: false                    |
 | item_category_id    | integer    | null: false                    |
 | item_condition_id   | integer    | null: false                    |
-| delivery_charges_id | integer    | null: false                    |
+| delivery_charge_id | integer    | null: false                    |
 | from_id             | integer    | null: false                    |
 | date_of_delivery_id | integer    | null: false                    |
 | price               | integer    | null: false                    |
@@ -58,7 +58,7 @@
 | Column             | Type       | options                        |
 |--------------------|------------|--------------------------------|
 | postal_code        | string     | null: false                    |
-| prefecture         | string     | null: false                    |
+| from_id            | integer    | null: false                    |
 | city               | string     | null: false                    |
 | house_number       | string     | null: false                    |
 | building_name      | string     |                                |
