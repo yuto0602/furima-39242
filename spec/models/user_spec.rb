@@ -14,19 +14,19 @@ RSpec.describe User, type: :model do
 
     context '新規登録できないとき' do
       it 'nicknameが空では登録できない' do
-        @user.nickname = ""
+        @user.nickname = ''
         @user.valid?
         expect(@user.errors.full_messages).to include("Nickname can't be blank")
       end
 
       it 'emailが空では登録できない' do
-        @user.email = ""
+        @user.email = ''
         @user.valid?
         expect(@user.errors.full_messages).to include("Email can't be blank")
       end
 
       it 'passwordが空では登録できない' do
-        @user.password = ""
+        @user.password = ''
         @user.valid?
         expect(@user.errors.full_messages).to include("Password can't be blank")
       end
@@ -35,13 +35,13 @@ RSpec.describe User, type: :model do
         @user.password = '123456'
         @user.password_confirmation = '1234567'
         @user.valid?
-        expect(@user.errors.full_messages).to include ("Password confirmation doesn't match Password")
+        expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
       end
 
       it 'nicknameが7文字以上では登録できない' do
         @user.nickname = 'abcdefg'
         @user.valid?
-        expect(@user.errors.full_messages).to include ("Nickname is too long (maximum is 6 characters)")
+        expect(@user.errors.full_messages).to include('Nickname is too long (maximum is 6 characters)')
       end
 
       it '重複したemailが存在する場合は登録できない' do
@@ -55,42 +55,42 @@ RSpec.describe User, type: :model do
       it 'emailは@を含まないと登録できない' do
         @user.email = 'invalid_email'
         @user.valid?
-        expect(@user.errors[:email]).to include("is invalid")
+        expect(@user.errors[:email]).to include('is invalid')
       end
 
       it 'passwordが5文字以下では登録できない' do
         @user.password = '12345'
         @user.valid?
-        expect(@user.errors[:password]).to include("is too short (minimum is 6 characters)")
+        expect(@user.errors[:password]).to include('is too short (minimum is 6 characters)')
       end
 
       it 'passwordが129文字以上では登録できない' do
         @user.password = Faker::Internet.password(min_length: 129, max_length: 150)
         @user.password_confirmation = @user.password
         @user.valid?
-        expect(@user.errors[:password]).to include("is too long (maximum is 128 characters)")
+        expect(@user.errors[:password]).to include('is too long (maximum is 128 characters)')
       end
 
       it 'user_last_nameが空では登録できない' do
-        @user.user_last_name = ""
+        @user.user_last_name = ''
         @user.valid?
         expect(@user.errors[:user_last_name]).to include("can't be blank")
       end
 
       it 'user_first_nameが空では登録できない' do
-        @user.user_first_name = ""
+        @user.user_first_name = ''
         @user.valid?
         expect(@user.errors[:user_first_name]).to include("can't be blank")
       end
 
       it 'user_last_name_addが空では登録できない' do
-        @user.user_last_name_add = ""
+        @user.user_last_name_add = ''
         @user.valid?
         expect(@user.errors[:user_last_name_add]).to include("can't be blank")
       end
 
       it 'user_first_name_addが空では登録できない' do
-        @user.user_first_name_add = ""
+        @user.user_first_name_add = ''
         @user.valid?
         expect(@user.errors[:user_first_name_add]).to include("can't be blank")
       end
@@ -100,7 +100,7 @@ RSpec.describe User, type: :model do
         invalid_last_name_formats.each do |format|
           @user.user_last_name = format
           @user.valid?
-          expect(@user.errors[:user_last_name]).to include("is invalid")
+          expect(@user.errors[:user_last_name]).to include('is invalid')
         end
       end
 
@@ -109,7 +109,7 @@ RSpec.describe User, type: :model do
         invalid_first_name_formats.each do |format|
           @user.user_first_name = format
           @user.valid?
-          expect(@user.errors[:user_first_name]).to include("is invalid")
+          expect(@user.errors[:user_first_name]).to include('is invalid')
         end
       end
 
@@ -118,7 +118,7 @@ RSpec.describe User, type: :model do
         invalid_last_name_add_formats.each do |format|
           @user.user_last_name_add = format
           @user.valid?
-          expect(@user.errors[:user_last_name_add]).to include("is invalid")
+          expect(@user.errors[:user_last_name_add]).to include('is invalid')
         end
       end
 
@@ -127,7 +127,7 @@ RSpec.describe User, type: :model do
         invalid_first_name_add_formats.each do |format|
           @user.user_first_name_add = format
           @user.valid?
-          expect(@user.errors[:user_first_name_add]).to include("is invalid")
+          expect(@user.errors[:user_first_name_add]).to include('is invalid')
         end
       end
 
@@ -139,4 +139,3 @@ RSpec.describe User, type: :model do
     end
   end
 end
-
