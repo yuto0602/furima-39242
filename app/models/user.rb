@@ -10,9 +10,9 @@ class User < ApplicationRecord
   PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i.freeze
   validates_format_of :password, with: PASSWORD_REGEX, message: 'には英字と数字の両方を含めて設定してください'
   # 苗字のバリデーション
-  validates :user_last_name, presence: true, length: { maximum: 50 }, format: { with: /\A[ぁ-んァ-ン一-龥々ー]+\z/ }
+  validates :user_last_name, presence: true, length: { maximum: 50 }, format: { with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/ }
   # 名前のバリデーション
-  validates :user_first_name, presence: true, length: { maximum: 50 }, format: { with: /\A[ぁ-んァ-ン一-龥々ー]+\z/ }
+  validates :user_first_name, presence: true, length: { maximum: 50 }, format: { with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/ }
   # カタカナ苗字のバリデーション
   validates :user_last_name_add, presence: true, length: { maximum: 50 }, format: { with: /\A[ァ-ヶー]+\z/ }
   # カタカナ名前のバリデーション
