@@ -4,6 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  has_many :items
+
   #ニックネームの文字数のバリデーション
   validates :nickname, presence: true, length: { maximum: 6 }
   #パスワード英数字混合のバリデーション
