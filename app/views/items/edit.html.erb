@@ -58,7 +58,7 @@ app/assets/stylesheets/items/new.css %>
         </div>
         <%= f.collection_select(:item_condition_id, ItemCondition.all, :id, :name, {}, {class:"select-box", id:"item-sales-status"}) %>
       </div>
-    </div> %>
+    </div>
     <%# /商品の詳細 %>
 
     <%# 配送について %>
@@ -81,7 +81,7 @@ app/assets/stylesheets/items/new.css %>
         <div class="weight-bold-text">
           発送までの日数
           <span class="indispensable">必須</span>
-        </div> %>
+        </div>
         <%= f.collection_select(:date_of_delivery_id, DateOfDelivery.all, :id, :name, {}, {class:"select-box", id:"item-scheduled-delivery"}) %>
       </div>
     </div>
@@ -115,7 +115,7 @@ app/assets/stylesheets/items/new.css %>
           </span>
         </div>
       </div>
-    </div> %>
+    </div>
     <%# /販売価格 %>
 
     <%# 注意書き %>
@@ -135,15 +135,15 @@ app/assets/stylesheets/items/new.css %>
         <a href="#">加盟店規約</a>
         に同意したことになります。
       </p>
-    </div> %>
+    </div>
     <%# /注意書き %>
     <%# 下部ボタン %>
     <div class="sell-btn-contents">
       <%= f.submit "変更する" ,class:"sell-btn" %>
       <%=link_to 'もどる', item_path, method: :get, class:"back-btn" %>
-    </div> %>
+    </div>
     <%# /下部ボタン %>
-  </div> %>
+  </div>
   <% end %>
 
   <footer class="items-sell-footer">
