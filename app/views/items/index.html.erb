@@ -1,4 +1,5 @@
 <%= render "shared/header" %>
+
 <div class='main'>
 
   <%# 画面上部の「人生を変えるフリマアプリ」帯部分 %>
@@ -129,23 +130,23 @@
     <ul class='item-lists'>
       <% @items.each do |item| %>
         <li class='list'>
-          <%= link_to items_path(item) do %>
-            <div class='item-img-content'>
+          <div class='item-img-content'>
+            <%= link_to item_path(item) do %>
               <%= image_tag item.image, class: "item-img" %>
-
+            <% end %>
               <%# 商品が売れていればsold outを表示しましょう %>
               <div class='sold-out'>
                 <span>Sold Out!!</span>
               </div>
               <%# //商品が売れていればsold outを表示しましょう %>
-
-            </div>
+          </div>
             <div class='item-info'>
               <h3 class='item-name'>
-                <%= item.item_name %>
+                <%= link_to item.item_name, item_path(item.id), class: :'item-name' %>
               </h3>
               <div class='item-price'>
-                <span><%= item.price %>円<br><%= DeliveryCharge.find(item.delivery_charge_id).name %></span>
+                <span><%= link_to "#{item.price} 円", item_path(item.id), class: :'item-price' %>
+                <%= link_to DeliveryCharge.find(item.delivery_charge_id).name, item_path(item.id), class: :'item-price' %></span>
                 <div class='star-btn'>
                   <%= image_tag "star.png", class:"star-icon" %>
 
@@ -153,7 +154,6 @@
                 </div>
               </div>
             </div>
-          <% end %>
         </li>
       <% end %>
 
