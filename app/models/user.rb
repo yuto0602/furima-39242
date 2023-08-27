@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :items
+  has_many :orders
 
   #ニックネームの文字数のバリデーション
   validates :nickname, presence: true, length: { maximum: 6 }
