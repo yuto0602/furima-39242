@@ -4,7 +4,8 @@ RSpec.describe OrderAddress, type: :model do
   describe '配送先住所の保存' do
     before do
       user = FactoryBot.create(:user)
-      @order_address = FactoryBot.build(:order_address, user_id: user.id)
+      item = FactoryBot.create(:item, user: user)
+      @order_address = FactoryBot.build(:order_address, user_id: user.id, item_id: item.id)
     end
 
     context '保存できる' do
@@ -37,7 +38,7 @@ RSpec.describe OrderAddress, type: :model do
       end
 
       it '都道府県が空だと保存できない' do
-        @order_address.from_id = nil
+        @order_address.from_id = 1
         @order_address.valid?
         expect(@order_address.errors[:from_id]).to include("can't be blank")
       end
@@ -66,10 +67,34 @@ RSpec.describe OrderAddress, type: :model do
         expect(@order_address.errors[:phone_number]).to include('is invalid')
       end
 
+      it '電話番号は9桁以下だと保存できない' do
+        @order_address.phone_number = '123456789'
+        @order_address.valid?
+        expect(@order_address.errors[:phone_number]).to include('is invalid')
+      end
+
+      it '電話番号は英数字以外が含まれていると保存できない' do
+        @order_address.phone_number = '123456789あ1'
+        @order_address.valid?
+        expect(@order_address.errors[:phone_number]).to include('is invalid')
+      end
+
       it 'tokenが空では登録できないこと' do
         @order_address.token = nil
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("Token can't be blank")
+        expect(@order_address.errors[:token]).to include("can't be blank")
+      end
+
+      it 'ユーザーが紐付いていなければ投稿できない' do
+        @order_address.user_id = nil
+        @order_address.valid?
+        expect(@order_address.errors[:user_id]).to include("can't be blank")
+      end
+
+      it '商品が紐付いていなければ投稿できない' do
+        @order_address.item_id = nil
+        @order_address.valid?
+        expect(@order_address.errors[:item_id]).to include("can't be blank")
       end
     end
   end

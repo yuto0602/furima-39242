@@ -1,6 +1,5 @@
 FactoryBot.define do
   factory :item do
-    # image { File.open(File.join(Rails.root, 'spec/fixtures/files/item-sample.png')) }
     item_name { Faker::Lorem.word }
     item_description { Faker::Lorem.paragraph_by_chars(number: 256) }
     item_category_id { Faker::Number.between(from: 2, to: 11) }
