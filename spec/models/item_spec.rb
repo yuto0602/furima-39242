@@ -74,7 +74,7 @@ RSpec.describe Item, type: :model do
       end
 
       it '価格が10000000以上だと出品できない' do
-        @item.price = 10000000
+        @item.price = 10_000_000
         @item.valid?
         expect(@item.errors[:price]).to include('must be less than or equal to 9999999')
       end
@@ -93,4 +93,3 @@ RSpec.describe Item, type: :model do
     end
   end
 end
-
